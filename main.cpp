@@ -13,7 +13,7 @@ class Figura
         virtual double Obim() = 0;
         virtual double Povrsina() = 0;
 };
-class Pravougaonik : Figura
+class Pravougaonik : public Figura
 {
 private:
     double a;
@@ -40,7 +40,7 @@ public:
         return O;
     }
 };
-class Elipsa : Figura
+class Elipsa : public Figura
 {
 private:
     double a;
@@ -67,53 +67,21 @@ public:
         return O;
     }
 };
-class Kvadrat : Pravougaonik
+class Kvadrat : public Pravougaonik
 {
 private:
-    double a;
+    double stranicaA;
 public:
-    Kvadrat(){a = 3.00;}
-    Kvadrat(double aa){a = aa;}
-    Kvadrat(const Kvadrat &K){ a = K.a;}
-
-    double getA()const {return a;}
-
-    void setA(double A){a = A;}
-
-    double Povrsina()
-    {
-        double P = a*a;
-        return P;
-    }
-    double Obim()
-    {
-        double O = 4*a  ;
-        return O;
-    }
+    Kvadrat() : Pravougaonik(10.00,10.00){}
+    Kvadrat(double x) : Pravougaonik(x,x){}
+    Kvadrat(const Kvadrat &x) : Pravougaonik(x){}
 };
-class Krug : Elipsa
+class Krug : public Elipsa
 {
-private:
-    double a;
 public:
-    Krug(){a = 2.00;}
-    Krug(double aa){a = aa;}
-    Krug(const Krug &K){ a = K.a;}
-
-    double getA()const {return a;}
-
-    void setA(double A){a = A;}
-
-    double Povrsina()
-    {
-        double P = a*a*3.14;
-        return P;
-    }
-    double Obim()
-    {
-        double O = 3.14*(3*(2*a)-sqrt((4*a)*(4*a)));
-        return O;
-    }
+    Krug() : Elipsa(2.00,2.00){}
+    Krug(double x) : Elipsa(x,x){}
+    Krug(const Krug &x) : Elipsa(x){}
 };
 class Oblik
 {
@@ -136,7 +104,7 @@ public:
 };
 int main()
 {
-    Pravougaonik P;
+     Pravougaonik P;
     Pravougaonik P1(10,12);
     Pravougaonik P2(P);
     cout<<P.Obim()<<","<<P.Povrsina()<<endl;
@@ -150,11 +118,27 @@ int main()
     cout<<E1.Obim()<<","<<E1.Povrsina()<<endl;
     cout<<E2.Obim()<<","<<E2.Povrsina()<<endl;
 
+    Kvadrat K;
+    Kvadrat K1(5);
+    Kvadrat K2(K);
+    cout<<K.Obim()<<","<<K.Povrsina()<<endl;
+    cout<<K1.Obim()<<","<<K1.Povrsina()<<endl;
+    cout<<K2.Obim()<<","<<K2.Povrsina()<<endl;
+
+    Krug G;
+    Krug G1(10);
+    Krug G2(G);
+    cout<<G.Obim()<<","<<G.Povrsina()<<endl;
+    cout<<G1.Obim()<<","<<G1.Povrsina()<<endl;
+    cout<<G2.Obim()<<","<<G2.Povrsina()<<endl;
+
     Oblik O;
-    Oblik O1(2);
+    Oblik O1(2,1);
     Oblik O2(O);
     cout<<O.UkupniObim()<<","<<O.UkupnaPovrsina()<<endl;
     cout<<O1.UkupniObim()<<","<<O1.UkupnaPovrsina()<<endl;
     cout<<O2.UkupniObim()<<","<<O2.UkupnaPovrsina()<<endl;
     return 0;
+}
+
 }
