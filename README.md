@@ -1,2 +1,2 @@
-# FIGURA
+# FIGURICA
 Drugi pokušaj :)
