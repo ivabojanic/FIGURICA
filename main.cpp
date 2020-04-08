@@ -90,7 +90,7 @@ private:
     Krug B;
 public:
     Oblik() : A(), B(){}
-    Oblik(double x) : A(x), B(x){}
+    Oblik(double x,double y) : A(x), B(y){}
     Oblik(const Oblik &O) : A(O.A), B(O.B){}
 
     double UkupniObim()
@@ -99,7 +99,7 @@ public:
     }
     double UkupnaPovrsina()
     {
-        return A.Povrsina()+ B.Povrsina();
+        return A.Povrsina()- B.Povrsina();
     }
 };
 int main()
@@ -139,6 +139,4 @@ int main()
     cout<<O1.UkupniObim()<<","<<O1.UkupnaPovrsina()<<endl;
     cout<<O2.UkupniObim()<<","<<O2.UkupnaPovrsina()<<endl;
     return 0;
-}
-
 }
